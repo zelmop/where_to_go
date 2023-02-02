@@ -127,7 +127,7 @@ class _AddFriendBottomSheetState extends State<AddFriendBottomSheet> {
                     if (_formKey.currentState!.validate()) {
                       viewModel.onAddFriend(
                         name: _nameTextEditingController.text, 
-                        nick: _nameTextEditingController.text
+                        nick: _nickTextEditingController.text
                       );
                     }
                   }, 

@@ -20,6 +20,8 @@ class _FriendsViewState extends State<FriendsView> {
   
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+
     return  ViewModelBuilder<FriendsViewViewModel>.reactive(
       viewModelBuilder: () => FriendsViewViewModel(),
       builder: (contex, viewModel, child) => 
@@ -27,25 +29,47 @@ class _FriendsViewState extends State<FriendsView> {
         children: [
           Container(
             padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-            child: ListView.separated(
-              itemCount: widget.friends.length,
-              itemBuilder: (context, index) {
-                return SizedBox(
-                  child: Text(widget.friends[index].name),
-                );
-              }, 
-              separatorBuilder: (context, index) => GapsContants.mediumVerticalGap
-            ),
+            child: Column(
+              children: [
+                Header(
+                  color: ColorConstants.primaryColor, 
+                  fontStyle: FontStyle.normal, 
+                  fontWeight: FontWeight.w700, 
+                  text: 'Amigos y Amigas', 
+                  width: size.width
+                ),
+                GapsContants.extraLargeVerticalGap,
+                Expanded(
+                  flex: 1,
+                  child: ListView.separated(
+                    itemCount: widget.friends.length,
+                    itemBuilder: (context, index) {
+                      return SizedBox(
+                        width: size.width * .8,
+                        child: FriendListTile(
+                          friend: widget.friends[index],
+                          onRemove: () => viewModel.onRemoveFriend(index)
+                        )
+                      );
+                    }, 
+                    separatorBuilder: (context, index) => GapsContants.mediumVerticalGap
+                  )
+                )
+              ]
+            )
           ),
           Align(
             alignment: Alignment.topRight,
             child: Container(
               margin: const EdgeInsets.only(top: 20, right: 20),
+              width: 42,
+              height: 42,
               child: FloatingActionButton(
                 backgroundColor: ColorConstants.secondaryColor,
                 onPressed: () async => await viewModel.onAddFriend(),
                 child: const Icon(
-                  Icons.add_outlined
+                  Icons.add_outlined,
+                  size: 12
                 )
               )
             )
