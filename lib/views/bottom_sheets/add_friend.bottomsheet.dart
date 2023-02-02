@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:ui_components/ui_components.dart';
+import 'package:where_to_go/utils/utils.dart';
 import 'package:where_to_go/viewmodels/viewmodels.dart';
 
 class AddFriendBottomSheet extends StatefulWidget {
@@ -63,6 +64,7 @@ class _AddFriendBottomSheetState extends State<AddFriendBottomSheet> {
         SingleChildScrollView(
           child: Form(
             key: _formKey,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             child: Column(
               children: [
                 GapsContants.mediumVerticalGap,
@@ -70,14 +72,16 @@ class _AddFriendBottomSheetState extends State<AddFriendBottomSheet> {
                   controller: _nameTextEditingController, 
                   labelText: 'Nombre', 
                   width: size.width * .7,
-                  obscureText: false
+                  obscureText: false,
+                  validator: TextFormFieldValidators.valdiateName
                 ),
                 GapsContants.mediumVerticalGap,
                 BasicInput(
                   controller: _nickTextEditingController, 
                   labelText: 'Apodo', 
                   width: size.width * .7,
-                  obscureText: false
+                  obscureText: false,
+                  validator: TextFormFieldValidators.valdiateNick
                 ),
                 GapsContants.mediumVerticalGap,
                 SufixInput(
@@ -119,7 +123,14 @@ class _AddFriendBottomSheetState extends State<AddFriendBottomSheet> {
                 GapsContants.mediumVerticalGap,
                 LargeButton(
                   color: ColorConstants.primaryColor, 
-                  onPressed: () {}, 
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      viewModel.onAddFriend(
+                        name: _nameTextEditingController.text, 
+                        nick: _nameTextEditingController.text
+                      );
+                    }
+                  }, 
                   text: 'AGREGAR', 
                   width: size.width * .7
                 )
