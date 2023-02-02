@@ -4,13 +4,13 @@ class Friend {
   double? lng;
   String name;
   String nick;
-  List<String> query;
+  List<String> preferences;
 
   Friend({
     required this.avatar,
     required this.name,
     required this.nick,
-    required this.query,
+    required this.preferences,
     this.lat,
     this.lng
   });

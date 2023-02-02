@@ -14,6 +14,7 @@ import 'package:where_to_go/views/views.dart';
   ],
   dependencies: [
     LazySingleton(classType: BottomSheetService),
+    LazySingleton(classType: DialogService),
     LazySingleton(classType: FriendsMixinService),
     LazySingleton(classType: PlacesServiceClient),
     LazySingleton(classType: NavigationService)

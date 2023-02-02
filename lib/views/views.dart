@@ -1,4 +1,5 @@
 export 'package:where_to_go/views/bottom_sheets/bottom_sheets.dart';
+export 'package:where_to_go/views/dialogs/dialogs.dart';
 export 'package:where_to_go/views/friends.view.dart';
 export 'package:where_to_go/views/home.view.dart';
 export 'package:where_to_go/views/initial.view.dart';
