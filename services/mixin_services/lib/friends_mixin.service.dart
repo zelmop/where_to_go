@@ -9,4 +9,9 @@ class FriendsMixinService with ListenableServiceMixin {
     _friends.add(friend);
     notifyListeners();
   }
+
+  void removeFriend(int index) {
+    _friends.removeAt(index);
+    notifyListeners();
+  }
 }
