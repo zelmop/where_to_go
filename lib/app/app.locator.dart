@@ -10,6 +10,7 @@ import 'package:mixin_services/friends_mixin.service.dart';
 import 'package:places_service/places_service_client.dart';
 import 'package:stacked_core/stacked_core.dart';
 import 'package:stacked_services/src/bottom_sheet/bottom_sheet_service.dart';
+import 'package:stacked_services/src/dialog/dialog_service.dart';
 import 'package:stacked_services/src/navigation/navigation_service.dart';
 
 final locator = StackedLocator.instance;
@@ -22,6 +23,7 @@ Future<void> setupLocator(
 
 // Register dependencies
   locator.registerLazySingleton(() => BottomSheetService());
+  locator.registerLazySingleton(() => DialogService());
   locator.registerLazySingleton(() => FriendsMixinService());
   locator.registerLazySingleton(() => PlacesServiceClient());
   locator.registerLazySingleton(() => NavigationService());

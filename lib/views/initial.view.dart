@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:ui_components/ui_components.dart';
+import 'package:where_to_go/utils/utils.dart';
 import 'package:where_to_go/viewmodels/viewmodels.dart';
 
 class InitialView extends StatefulWidget {
@@ -56,24 +57,31 @@ class _InitialViewState extends State<InitialView> {
                   GapsContants.extraLargeVerticalGap,
                   Form(
                     key: _formKey,
+                    autovalidateMode: AutovalidateMode.always,
                     child: Column(
                       children: [
                         BasicInput(
                           controller: _emailTextEditingController, 
                           labelText: 'Email', 
-                          width: size.width * .7
+                          width: size.width * .7,
+                          validator: TextFormFieldValidators.validateEmail
                         ),
                         GapsContants.largeVerticalGap,
                         BasicInput(
                           controller: _passwordTextEditingController, 
                           labelText: 'Contraseña', 
                           width: size.width * .7,
-                          obscureText: true
+                          obscureText: true,
+                          validator: TextFormFieldValidators.validatePassword
                         ),
                         GapsContants.largeVerticalGap,
                         LargeButton(
                           color: ColorConstants.primaryColor, 
-                          onPressed: () async => await viewModel.onNavigateToHomeView(), 
+                          onPressed: () async {
+                            if (_formKey.currentState!.validate()) {
+                              await viewModel.onNavigateToHomeView();
+                            }
+                          }, 
                           text: 'INGRESAR', 
                           width: size.width * .7
                         ),

@@ -5,12 +5,14 @@ class BasicInput extends StatelessWidget {
   final String labelText;
   final double width;
   final bool obscureText;
+  final Function validator;
   
   const BasicInput({
     super.key,
     required this.controller,
     required this.labelText,
     required this.width,
+    required this.validator,
     this.obscureText = false
   });
 
@@ -26,7 +28,8 @@ class BasicInput extends StatelessWidget {
             labelText, 
             style: const TextStyle(fontFamily: 'NotoSans')
           )
-        )
+        ),
+        validator: (value) => validator(value)
       )
     );
   }

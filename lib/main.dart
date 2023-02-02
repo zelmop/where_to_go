@@ -8,6 +8,8 @@ import 'package:where_to_go/utils/utils.dart';
 Future<void> main() async {
   await setupLocator();
   setupBottomSheetUi();
+  setupDialogUi();
+
   runApp(const MyApp());
 }
 
