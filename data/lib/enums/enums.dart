@@ -1,1 +1,1 @@
-export 'package:data/enums/ui/bottom_sheet_type.dart';
+export 'package:data/enums/ui/ui.dart';
