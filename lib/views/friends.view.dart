@@ -22,14 +22,20 @@ class _FriendsViewState extends State<FriendsView> {
   Widget build(BuildContext context) {
     return  ViewModelBuilder<FriendsViewViewModel>.reactive(
       viewModelBuilder: () => FriendsViewViewModel(),
-      builder: (contex, viewModel, child) => Stack(
+      builder: (contex, viewModel, child) => 
+      Stack(
         children: [
-          ListView.separated(
-            itemCount: widget.friends.length,
-            itemBuilder: (context, index) {
-              return Container();
-            }, 
-            separatorBuilder: (context, index) => GapsContants.mediumVerticalGap
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+            child: ListView.separated(
+              itemCount: widget.friends.length,
+              itemBuilder: (context, index) {
+                return SizedBox(
+                  child: Text(widget.friends[index].name),
+                );
+              }, 
+              separatorBuilder: (context, index) => GapsContants.mediumVerticalGap
+            ),
           ),
           Align(
             alignment: Alignment.topRight,
