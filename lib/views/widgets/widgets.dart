@@ -1,0 +1,1 @@
+export 'package:where_to_go/views/widgets/main_navigation_bar.widget.dart';

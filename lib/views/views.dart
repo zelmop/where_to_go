@@ -1,0 +1,9 @@
+export 'package:where_to_go/views/bottom_sheets/bottom_sheets.dart';
+export 'package:where_to_go/views/friends.view.dart';
+export 'package:where_to_go/views/home.view.dart';
+export 'package:where_to_go/views/initial.view.dart';
+export 'package:where_to_go/views/main_navigation.view.dart';
+export 'package:where_to_go/views/map.view.dart';
+export 'package:where_to_go/views/payment.view.dart';
+export 'package:where_to_go/views/search.view.dart';
+export 'package:where_to_go/views/settings.view.dart';

@@ -1,0 +1,105 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "where_to_go",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "where_to_go (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "where_to_go (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "data",
+            "cwd": "data",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "data (profile mode)",
+            "cwd": "data",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "data (release mode)",
+            "cwd": "data",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "ui_components",
+            "cwd": "ui_components",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "ui_components (profile mode)",
+            "cwd": "ui_components",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "ui_components (release mode)",
+            "cwd": "ui_components",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "places_api",
+            "cwd": "repositories\\places_api",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "places_api (profile mode)",
+            "cwd": "repositories\\places_api",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "places_api (release mode)",
+            "cwd": "repositories\\places_api",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "places_service",
+            "cwd": "services\\places_service",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "places_service (profile mode)",
+            "cwd": "services\\places_service",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "places_service (release mode)",
+            "cwd": "services\\places_service",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}

@@ -1,0 +1,1 @@
+export 'package:where_to_go/viewmodels/bottom_sheets/add_friend_bottom_sheet.viewmodel.dart';

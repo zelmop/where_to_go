@@ -1,0 +1,1 @@
+export 'package:data/models/query_parameters/places_apli_client_query_parameters.model.dart';
