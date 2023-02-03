@@ -18,9 +18,36 @@ class SearchViewViewModel extends BaseViewModel {
 
   LatLng? _latLng;
 
+  bool _toggleFilters = false;
+  bool get toggleFilters => _toggleFilters;
+
+  bool _showFilters = false;
+  bool get showFilters => _showFilters;
+
+  double _radius = 2000;
+  double get radius => _radius;
+
   SearchViewViewModel() {
     _placesServiceClient = locator<PlacesServiceClient>();
     _dialogService = locator<DialogService>();
+  }
+
+  void onTogleFilters() {
+    _toggleFilters = !_toggleFilters;
+    if (_showFilters) {
+      _showFilters = false;
+    }
+    
+    notifyListeners();
+  }
+
+  void onShowFilters() {
+    if (!_toggleFilters) {
+      return;
+    }
+
+    _showFilters = !_showFilters;
+    notifyListeners();
   }
 
   Future<void> onSearch({

@@ -4,6 +4,7 @@ import 'package:stacked/stacked.dart';
 import 'package:ui_components/ui_components.dart';
 import 'package:where_to_go/utils/utils.dart';
 import 'package:where_to_go/viewmodels/viewmodels.dart';
+import 'package:where_to_go/views/widgets/widgets.dart';
 
 class SearchView extends StatefulWidget {
   final List<Friend> friends;
@@ -73,7 +74,15 @@ class _SearchViewState extends State<SearchView> {
                 icon: Icons.search_outlined
               ),
             ),
-            GapsContants.extraLargeVerticalGap,
+            GapsContants.mediumVerticalGap,
+            SearchViewFilters(
+              onShowFilter: () => viewModel.onShowFilters(),
+              onTogleFilters: () => viewModel.onTogleFilters(),
+              showFilters: viewModel.showFilters,
+              toggleFilters: viewModel.toggleFilters,
+              radius: viewModel.radius
+            ),
+            GapsContants.mediumVerticalGap,
             Expanded(
               flex: 1,
               child: viewModel.isBusy ? 
