@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:ui_components/ui_components.dart';
 import 'package:where_to_go/app/app.locator.dart';
@@ -9,6 +10,8 @@ Future<void> main() async {
   await setupLocator();
   setupBottomSheetUi();
   setupDialogUi();
+
+  await dotenv.load(fileName: "assets/.env");
 
   runApp(const MyApp());
 }

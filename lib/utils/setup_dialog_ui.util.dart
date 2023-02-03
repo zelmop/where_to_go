@@ -8,7 +8,11 @@ void setupDialogUi() {
 
   final builders = {
     DialogType.map: (context, dialogRequest, completer) =>
-        MapDialog(request: dialogRequest, completer: completer)
+        MapDialog(request: dialogRequest, completer: completer),
+    DialogType.avatars: (context, dialogRequest, completer) =>
+        AvatarsDialog(request: dialogRequest, completer: completer),
+    DialogType.addPaymentItem: (context, dialogRequest, completer) =>
+        AddPaymentItemDialog(request: dialogRequest, completer: completer),
   };
 
   dialogService.registerCustomDialogBuilders(builders);

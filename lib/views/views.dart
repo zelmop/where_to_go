@@ -8,3 +8,4 @@ export 'package:where_to_go/views/map.view.dart';
 export 'package:where_to_go/views/payment.view.dart';
 export 'package:where_to_go/views/search.view.dart';
 export 'package:where_to_go/views/settings.view.dart';
+export 'package:where_to_go/views/widgets/widgets.dart';

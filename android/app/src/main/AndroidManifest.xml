@@ -1,5 +1,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="noodle.soup.where_to_go">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <!--#docregion android-queries-->
+    <!-- Provide required visibility configuration for API level 30 and above -->
+    <queries>
+        <intent>
+        <action android:name="android.intent.action.VIEW" />
+        <data android:scheme="https" />
+        </intent>
+    </queries>
+
    <application
         android:label="where_to_go"
         android:name="${applicationName}"
@@ -31,6 +43,6 @@
             android:name="flutterEmbedding"
             android:value="2" />
         <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyCVuax_uyHX7JUC_gF5G9ZPX_tK7H3Zfa4"/>
+               android:value="google_api_key"/>
     </application>
 </manifest>

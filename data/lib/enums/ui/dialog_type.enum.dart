@@ -1,3 +1,5 @@
 enum DialogType {
-  map
+  map,
+  avatars,
+  addPaymentItem
 }

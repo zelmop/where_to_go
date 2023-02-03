@@ -16,6 +16,7 @@ import 'package:where_to_go/views/views.dart';
     LazySingleton(classType: BottomSheetService),
     LazySingleton(classType: DialogService),
     LazySingleton(classType: FriendsMixinService),
+    LazySingleton(classType: PaymentItemsMixinService),
     LazySingleton(classType: PlacesServiceClient),
     LazySingleton(classType: NavigationService)
   ]

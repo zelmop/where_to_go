@@ -7,6 +7,7 @@
 // ignore_for_file: public_member_api_docs, implementation_imports, depend_on_referenced_packages
 
 import 'package:mixin_services/friends_mixin.service.dart';
+import 'package:mixin_services/payment_items_mixin.service.dart';
 import 'package:places_service/places_service_client.dart';
 import 'package:stacked_core/stacked_core.dart';
 import 'package:stacked_services/src/bottom_sheet/bottom_sheet_service.dart';
@@ -25,6 +26,7 @@ Future<void> setupLocator(
   locator.registerLazySingleton(() => BottomSheetService());
   locator.registerLazySingleton(() => DialogService());
   locator.registerLazySingleton(() => FriendsMixinService());
+  locator.registerLazySingleton(() => PaymentItemsMixinService());
   locator.registerLazySingleton(() => PlacesServiceClient());
   locator.registerLazySingleton(() => NavigationService());
 }

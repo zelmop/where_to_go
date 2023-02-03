@@ -41,9 +41,57 @@ class TextFormFieldValidators {
 
   static String? validatePreference(String? prefrence) {
     if (prefrence == null || prefrence.isEmpty) {
-      return 'Campo requerido';
+      return null;
     }
 
-    return null;
+    var r = RegExp(r'^[a-zA-Z ñáéíóú]+$');
+
+    if (r.hasMatch(prefrence)) {
+      return null;
+    }
+
+    return 'Solo letras y espacios';
+  }
+
+  static String? validateQuery(String? query) {
+    if (query == null || query.isEmpty) {
+      return null;
+    }
+
+    var r = RegExp(r'^[a-zA-Z ñáéíóú]+$');
+
+    if (r.hasMatch(query)) {
+      return null;
+    }
+
+    return 'Solo letras y espacios';
+  }
+
+  static String? validateRadius(String? query) {
+    if (query == null || query.isEmpty) {
+      return null;
+    }
+
+    var r = RegExp(r'^[0-9]+$');
+
+    if (r.hasMatch(query)) {
+      return null;
+    }
+
+    return 'Solo numeros';
+  }
+
+  static String? validatePaymentPrice(String? query) {
+    if (query == null || query.isEmpty) {
+      return null;
+    }
+
+    var r = RegExp(r'^[0-9,.]+$');
+
+    if (r.hasMatch(query)) {
+      return null;
+    }
+
+    return 'Solo numeros, "," y "." ';
   }
 }

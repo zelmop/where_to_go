@@ -25,7 +25,7 @@ class Header extends StatelessWidget {
         style: TextStyle(
           fontFamily: 'Lato',
           color: color,
-          fontSize: 24,
+          fontSize: 32,
           fontWeight: fontWeight,
           fontStyle: fontStyle
         )

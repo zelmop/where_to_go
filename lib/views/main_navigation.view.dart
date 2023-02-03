@@ -20,9 +20,12 @@ class MainNavigationView extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         physics: const NeverScrollableScrollPhysics(),
         children: [
-          const SearchView(),
+          SearchView(friends: viewModel.friends),
           FriendsView(friends: viewModel.friends),
-          const PaymentView(),
+          PaymentView(
+            friends: viewModel.friends, 
+            paymentItems: viewModel.paymentItems
+          ),
           const SettingsView()
         ]
       )

@@ -1,0 +1,1 @@
+export 'package:where_to_go/viewmodels/widgets/search_view_filters_widget.viewmodel.dart';

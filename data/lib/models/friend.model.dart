@@ -1,4 +1,5 @@
 class Friend {
+  String id;
   String avatar;
   double? lat;
   double? lng;
@@ -7,6 +8,7 @@ class Friend {
   List<String> preferences;
 
   Friend({
+    required this.id,
     required this.avatar,
     required this.name,
     required this.nick,

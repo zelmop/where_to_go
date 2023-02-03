@@ -4,8 +4,11 @@ import 'package:mixin_services/mixin_services.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:where_to_go/app/app.locator.dart';
+import 'package:uuid/uuid.dart';
 
 class AddFriendBottomSheetViewModel extends BaseViewModel {
+  final uuid = const Uuid();
+
   late DialogService _dialogService;
   late FriendsMixinService _friendsMixinService;
   late BottomSheetService _bottomSheetService;
@@ -18,11 +21,13 @@ class AddFriendBottomSheetViewModel extends BaseViewModel {
     _bottomSheetService = locator<BottomSheetService>();
   }
 
-  final List<String> preferences = [];
+  final List<String> _preferences = [];
+  List<String> get preferences => _preferences;
 
   void onAddPreference(String? preference) {
     if (preference != null && preference.isNotEmpty) {
-      preferences.add(preference);
+      _preferences.add(preference);
+      notifyListeners();
     }
   }
 
@@ -53,12 +58,13 @@ class AddFriendBottomSheetViewModel extends BaseViewModel {
     }
 
     var friend = Friend(
+      id: uuid.v4(),
       name: name, 
       nick: nick,
       lat: lat,
       lng: lng,
       preferences: preferences,
-      avatar: ''
+      avatar: 'assets/images/avatar_00.png'
     );
 
     _friendsMixinService.addFriend(friend);
@@ -67,4 +73,8 @@ class AddFriendBottomSheetViewModel extends BaseViewModel {
     _bottomSheetService.completeSheet(response);
   }
 
+  void onDeletePreference(int index) {
+    _preferences.removeAt(index);
+    notifyListeners();
+  }
 }

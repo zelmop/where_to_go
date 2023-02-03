@@ -10,8 +10,7 @@ PlacesApiClientQueryParameters _$PlacesApiClientQueryParametersFromJson(
         Map<String, dynamic> json) =>
     PlacesApiClientQueryParameters(
       query: json['query'] as String,
-      lat: (json['lat'] as num).toDouble(),
-      lng: (json['lng'] as num).toDouble(),
+      location: json['location'] as String,
       radius: json['radius'] as int,
       region: json['region'] as String,
       type: json['type'] as String,
@@ -22,8 +21,7 @@ Map<String, dynamic> _$PlacesApiClientQueryParametersToJson(
         PlacesApiClientQueryParameters instance) =>
     <String, dynamic>{
       'query': instance.query,
-      'lat': instance.lat,
-      'lng': instance.lng,
+      'location': instance.location,
       'radius': instance.radius,
       'region': instance.region,
       'type': instance.type,
