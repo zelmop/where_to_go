@@ -21,6 +21,7 @@ class AddFriendBottomSheet extends StatefulWidget {
 
 class _AddFriendBottomSheetState extends State<AddFriendBottomSheet> {
   final _formKey = GlobalKey<FormState>();
+  final _preferencesFormKey = GlobalKey<FormState>();
 
   late ScrollController _scrollController;
 
@@ -62,81 +63,97 @@ class _AddFriendBottomSheetState extends State<AddFriendBottomSheet> {
         onClosing: () {}, 
         builder: (context) => 
         SingleChildScrollView(
-          child: Form(
-            key: _formKey,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            child: Column(
-              children: [
-                GapsContants.mediumVerticalGap,
-                BasicInput(
-                  controller: _nameTextEditingController, 
-                  labelText: 'Nombre', 
-                  width: size.width * .7,
-                  obscureText: false,
-                  validator: TextFormFieldValidators.valdiateName
-                ),
-                GapsContants.mediumVerticalGap,
-                BasicInput(
-                  controller: _nickTextEditingController, 
-                  labelText: 'Apodo', 
-                  width: size.width * .7,
-                  obscureText: false,
-                  validator: TextFormFieldValidators.valdiateNick
-                ),
-                GapsContants.mediumVerticalGap,
-                SufixInput(
-                  controller: _preferenceTextEditingController, 
-                  labelText: 'Agregar preferencia', 
-                  width: size.width * .7,
-                  obscureText: false,
-                  onPressed: () {
-                    viewModel.onAddPreference(_preferenceTextEditingController.text);
-                    _preferenceTextEditingController.text = '';
-                    FocusManager.instance.primaryFocus?.unfocus();
-                  },
-                  icon: Icons.add_outlined
-                ),
-                GapsContants.mediumVerticalGap,
-                SizedBox(
-                  width: size.width * .7,
-                  height: 40,
-                  child: ListView.separated(
-                    controller: _scrollController,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: viewModel.preferences.length,
-                    separatorBuilder: (context, index) => const SizedBox(width: 10),
-                    itemBuilder: (context, index) => Chip(
-                      onDeleted: () {},
-                      elevation: 2,
-                      label: Text(
-                        viewModel.preferences[index]
-                      ),
-                      deleteIcon: const Icon(Icons.close, size: 16)
+          child: Column(
+            children: [
+              Form(
+                key: _formKey,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                child: Column(
+                  children: [
+                    GapsContants.mediumVerticalGap,
+                    BasicInput(
+                      controller: _nameTextEditingController, 
+                      labelText: 'Nombre', 
+                      width: size.width * .7,
+                      obscureText: false,
+                      validator: TextFormFieldValidators.valdiateName
+                    ),
+                    GapsContants.mediumVerticalGap,
+                    BasicInput(
+                      controller: _nickTextEditingController, 
+                      labelText: 'Apodo', 
+                      width: size.width * .7,
+                      obscureText: false,
+                      validator: TextFormFieldValidators.valdiateNick
                     )
-                  )
-                ),
-                GapsContants.mediumVerticalGap,
-                TextButton(
-                  onPressed: () async => await viewModel.onGetLocation(),
-                  child: const Text('establecer ubicación')
-                ),
-                GapsContants.mediumVerticalGap,
-                LargeButton(
-                  color: ColorConstants.primaryColor, 
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      viewModel.onAddFriend(
-                        name: _nameTextEditingController.text, 
-                        nick: _nickTextEditingController.text
-                      );
-                    }
-                  }, 
-                  text: 'AGREGAR', 
-                  width: size.width * .7
+                  ]
                 )
-              ]
-            )
-          ),
+              ),
+              Form(
+                key: _preferencesFormKey,
+                autovalidateMode: AutovalidateMode.always,
+                child: Column(
+                  children: [
+                    GapsContants.mediumVerticalGap,
+                    SufixInput(
+                      controller: _preferenceTextEditingController, 
+                      labelText: 'Agregar preferencia', 
+                      width: size.width * .7,
+                      obscureText: false,
+                      validator: TextFormFieldValidators.validatePreference,
+                      onPressed: () {
+                        if (!_preferencesFormKey.currentState!.validate()) {
+                          return;
+                        }
+                        viewModel.onAddPreference(_preferenceTextEditingController.text);
+                        _preferenceTextEditingController.text = '';
+                        FocusManager.instance.primaryFocus?.unfocus();
+                      },
+                      icon: Icons.add_outlined
+                    ),
+                    GapsContants.mediumVerticalGap,
+                    SizedBox(
+                      width: size.width * .7,
+                      height: 40,
+                      child: ListView.separated(
+                        controller: _scrollController,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: viewModel.preferences.length,
+                        separatorBuilder: (context, index) => const SizedBox(width: 10),
+                        itemBuilder: (context, index) => Chip(
+                          onDeleted: () {},
+                          elevation: 2,
+                          label: Text(
+                            viewModel.preferences[index]
+                          ),
+                          deleteIcon: const Icon(Icons.close, size: 16)
+                        )
+                      )
+                    ),
+                  ]
+                )
+              ),
+              GapsContants.mediumVerticalGap,
+              TextButton(
+                onPressed: () async => await viewModel.onGetLocation(),
+                child: const Text('establecer ubicación')
+              ),
+              GapsContants.mediumVerticalGap,
+              LargeButton(
+                color: ColorConstants.primaryColor, 
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    viewModel.onAddFriend(
+                      name: _nameTextEditingController.text, 
+                      nick: _nickTextEditingController.text
+                    );
+                  }
+                }, 
+                text: 'AGREGAR', 
+                width: size.width * .7
+              )
+            ]
+          )
         )
       )
     );

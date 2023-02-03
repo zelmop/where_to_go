@@ -45,7 +45,7 @@ class _MapDialogState extends State<MapDialog> {
           width: size.width *.9, 
           height: size.height * .6,
           child: viewModel.isBusy ? 
-          SimpleLoader(width: size.width *.9, height: size.height * .6):
+          SimpleLoader(width: size.width *.9, height: size.height * .6) :
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Stack(
