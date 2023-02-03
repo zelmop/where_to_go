@@ -58,7 +58,7 @@ class AddFriendBottomSheetViewModel extends BaseViewModel {
       lat: lat,
       lng: lng,
       preferences: preferences,
-      avatar: ''
+      avatar: 'assets/images/avatar_00.png'
     );
 
     _friendsMixinService.addFriend(friend);
