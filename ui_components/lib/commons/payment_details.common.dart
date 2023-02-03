@@ -21,7 +21,9 @@ class PaymentDetails extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [ 
           PaymentResultText(text: 'Total: \$ ${paymentItems.fold(0.0, (p, c) => p + c.price)}'),
-          PaymentResultText(text: 'C/U: \$ ${paymentItems.fold(0.0, (p, c) => p + c.price) / friends.length }')
+          friends.isNotEmpty ? 
+          PaymentResultText(text: 'C/U: \$ ${paymentItems.fold(0.0, (p, c) => p + c.price) / friends.length }') : 
+          Container()
         ]
       )
     );
