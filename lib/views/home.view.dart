@@ -34,6 +34,7 @@ class _HomeViewState extends State<HomeView> {
       viewModelBuilder: () => HomeViewViewModel(), 
       builder: (context, viewModel, child) => SafeArea(
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
           body: Stack(
             children: [
               MainNavigationView(
