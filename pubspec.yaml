@@ -39,6 +39,7 @@ dependencies:
   location: ^4.4.0
   google_maps_flutter: ^2.2.3
   url_launcher: ^6.1.8
+  uuid: ^3.0.7
   
   data:
     path: ./data

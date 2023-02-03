@@ -28,6 +28,7 @@ class _FriendsViewState extends State<FriendsView> {
       Stack(
         children: [
           Container(
+            color: ColorConstants.primaryGrey,
             padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
             child: Column(
               children: [
@@ -39,7 +40,7 @@ class _FriendsViewState extends State<FriendsView> {
                   width: size.width
                 ),
                 GapsContants.extraLargeVerticalGap,
-                Expanded(
+                widget.friends.isNotEmpty ? Expanded(
                   flex: 1,
                   child: ListView.separated(
                     itemCount: widget.friends.length,
@@ -57,6 +58,10 @@ class _FriendsViewState extends State<FriendsView> {
                     }, 
                     separatorBuilder: (context, index) => GapsContants.mediumVerticalGap
                   )
+                ) :
+                const Expanded(
+                  flex: 1,
+                  child: NoItems(text: 'Aun no se agregaron amigos o amigas')
                 )
               ]
             )

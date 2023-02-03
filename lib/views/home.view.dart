@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:ui_components/constants/color.constants.dart';
 import 'package:where_to_go/viewmodels/viewmodels.dart';
-
 import 'package:where_to_go/views/views.dart';
-import 'package:where_to_go/views/widgets/widgets.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
