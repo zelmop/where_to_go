@@ -12,6 +12,6 @@ class InitialViewViewModel extends BaseViewModel {
   }
 
   Future<void> onNavigateToHomeView() async {
-    await _navigationService.navigateTo(Routes.homeView);
+    await _navigationService.pushNamedAndRemoveUntil(Routes.homeView);
   }
 }
