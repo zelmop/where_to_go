@@ -25,7 +25,6 @@ class AvatarsDialogViewModel extends BaseViewModel {
   }
 
   void onEditFriendAvatar(Friend friend, String newAvatar) {
-    friend.avatar = newAvatar;
     _friendsMixinService.editFriendAvatar(friend, newAvatar);
     var response = DialogResponse(confirmed: true);
     _dialogService.completeDialog(response);
