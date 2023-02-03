@@ -1,7 +1,6 @@
 import 'package:data/data.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
 import 'package:places_service/places_service_client.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -24,8 +23,8 @@ class SearchViewViewModel extends BaseViewModel {
   bool _showFilters = false;
   bool get showFilters => _showFilters;
 
-  double _radius = 2000;
-  double get radius => _radius;
+  int _radius = 2000;
+  int get radius => _radius;
 
   SearchViewViewModel() {
     _placesServiceClient = locator<PlacesServiceClient>();
@@ -52,21 +51,25 @@ class SearchViewViewModel extends BaseViewModel {
 
   Future<void> onSearch({
     required List<Friend> friends,
-    required String query
+    required String query,
+    List<String>? filterPreferences
   }) async {
     setBusy(true);
 
     if (friends.isNotEmpty) {
 
-      var friendsWithPreferences = friends.where((f) => f.preferences.isNotEmpty).toList();
+      List<String> preferences = [];
 
-      if (friendsWithPreferences.isNotEmpty) {
-        var temp = friendsWithPreferences.map((e) => e.preferences.map((p) => p)).toList();
-        var preferences = temp.expand((element) => element).toList();
+      if (filterPreferences !=  null) {
+        preferences = filterPreferences;
+      } else {
+        preferences = SearchUtil.getPreferencesForListOfFriends(friends);
+      }
 
+      if (preferences.isNotEmpty) {
         query += ' ${preferences.join(" ")}';
       }
-      
+
       var friendsWithLocation = friends.where((f) => f.lat != null).toList();
 
       if (friendsWithLocation.isNotEmpty) {
@@ -76,7 +79,7 @@ class SearchViewViewModel extends BaseViewModel {
       }
 
     } else {
-      _latLng = await _fetchUserLocation();
+      _latLng = await GeolocationUtil.fetchUserLocation();
     }
 
     if (_latLng == null) {
@@ -104,7 +107,7 @@ class SearchViewViewModel extends BaseViewModel {
     var parameters = PlacesApiClientQueryParameters(
       query: query,
       location: '${_latLng!.latitude},${_latLng!.longitude}',
-      radius: 5000,
+      radius: _radius,
       region: 'ar',
       type: '',
       key: dotenv.get('GOOGLE_API_KEY')
@@ -118,37 +121,14 @@ class SearchViewViewModel extends BaseViewModel {
     setBusy(false);
   }
 
-  Future<LatLng?> _fetchUserLocation() async {
-    Location location = Location();
+  Future<void> applyFilters(int radius, List<Friend> friends, String query, List<String> preferences) async {
+    _radius = radius;
+    _showFilters = false;
+    _toggleFilters = false;
+    
+    notifyListeners();
 
-    bool serviceEnabled;
-    PermissionStatus permissionGranted;
-    LocationData locationData;
-
-    serviceEnabled = await location.serviceEnabled();
-
-    if (!serviceEnabled) {
-
-      serviceEnabled = await location.requestService();
-
-      if (!serviceEnabled) {
-        return null;
-      }
-    }
-
-    permissionGranted = await location.hasPermission();
-
-    if (permissionGranted == PermissionStatus.denied) {
-      permissionGranted = await location.requestPermission();
-
-      if (permissionGranted != PermissionStatus.granted) {
-        return null;
-      }
-    }
-
-    locationData = await location.getLocation();
-
-    return LatLng(locationData.latitude!, locationData.longitude!);
+    await onSearch(friends: friends, query: query, filterPreferences: preferences);
   }
 
   Future<void> onOpenPlaceInMap(String placeId) async {

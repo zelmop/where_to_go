@@ -1,0 +1,1 @@
+export 'package:ui_components/commons/chip.common.dart';

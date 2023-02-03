@@ -18,11 +18,13 @@ class AddFriendBottomSheetViewModel extends BaseViewModel {
     _bottomSheetService = locator<BottomSheetService>();
   }
 
-  final List<String> preferences = [];
+  final List<String> _preferences = [];
+  List<String> get preferences => _preferences;
 
   void onAddPreference(String? preference) {
     if (preference != null && preference.isNotEmpty) {
-      preferences.add(preference);
+      _preferences.add(preference);
+      notifyListeners();
     }
   }
 
@@ -67,4 +69,8 @@ class AddFriendBottomSheetViewModel extends BaseViewModel {
     _bottomSheetService.completeSheet(response);
   }
 
+  void onDeletePreference(int index) {
+    _preferences.removeAt(index);
+    notifyListeners();
+  }
 }
