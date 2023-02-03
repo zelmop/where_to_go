@@ -1,6 +1,8 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:math';
 
+import 'package:location/location.dart';
+
 class GeolocationUtil {
   static LatLng getCentralGeoCoordinate(List<LatLng> geoCoordinates) {
     
@@ -32,5 +34,38 @@ class GeolocationUtil {
     var centralLatitude = atan2(z, centralSquareRoot);
 
     return LatLng(centralLatitude * 180 / pi, centralLongitude * 180 / pi);
+  }
+
+  static Future<LatLng?> fetchUserLocation() async {
+    Location location = Location();
+
+    bool serviceEnabled;
+    PermissionStatus permissionGranted;
+    LocationData locationData;
+
+    serviceEnabled = await location.serviceEnabled();
+
+    if (!serviceEnabled) {
+
+      serviceEnabled = await location.requestService();
+
+      if (!serviceEnabled) {
+        return null;
+      }
+    }
+
+    permissionGranted = await location.hasPermission();
+
+    if (permissionGranted == PermissionStatus.denied) {
+      permissionGranted = await location.requestPermission();
+
+      if (permissionGranted != PermissionStatus.granted) {
+        return null;
+      }
+    }
+
+    locationData = await location.getLocation();
+
+    return LatLng(locationData.latitude!, locationData.longitude!);
   }
 }

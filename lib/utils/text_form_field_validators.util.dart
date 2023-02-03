@@ -66,4 +66,18 @@ class TextFormFieldValidators {
 
     return 'Solo letras y espacios';
   }
+
+  static String? validateRaius(String? query) {
+    if (query == null || query.isEmpty) {
+      return null;
+    }
+
+    var r = RegExp(r'^[0-9]+$');
+
+    if (r.hasMatch(query)) {
+      return null;
+    }
+
+    return 'Solo numeros';
+  }
 }

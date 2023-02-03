@@ -60,7 +60,10 @@ class _AddFriendBottomSheetState extends State<AddFriendBottomSheet> {
       builder: (context, viewModel, child) => 
       BottomSheet(
         enableDrag: false,
-        onClosing: () {}, 
+        onClosing: () {},
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(25.0))
+        ),
         builder: (context) => 
         SingleChildScrollView(
           child: Column(
@@ -120,16 +123,12 @@ class _AddFriendBottomSheetState extends State<AddFriendBottomSheet> {
                         scrollDirection: Axis.horizontal,
                         itemCount: viewModel.preferences.length,
                         separatorBuilder: (context, index) => const SizedBox(width: 10),
-                        itemBuilder: (context, index) => Chip(
-                          onDeleted: () {},
-                          elevation: 2,
-                          label: Text(
-                            viewModel.preferences[index]
-                          ),
-                          deleteIcon: const Icon(Icons.close, size: 16)
+                        itemBuilder: (context, index) => ChipCommon(
+                          onDeleted: () => viewModel.onDeletePreference(index),
+                          text: viewModel.preferences[index]
                         )
                       )
-                    ),
+                    )
                   ]
                 )
               ),
