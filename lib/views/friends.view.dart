@@ -65,7 +65,7 @@ class _FriendsViewState extends State<FriendsView> {
               width: 42,
               height: 42,
               child: FloatingActionButton(
-                backgroundColor: ColorConstants.secondaryColor,
+                backgroundColor: ColorConstants.primaryColor,
                 onPressed: () async => await viewModel.onAddFriend(),
                 child: const Icon(
                   Icons.add_outlined,

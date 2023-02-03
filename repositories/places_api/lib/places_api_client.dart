@@ -8,15 +8,25 @@ class PlacesApiClient {
   final dio = Dio();
 
   Future<List<Place>> fetchPlacesByTextSearch(Map<String, dynamic> queryParameters) async {
-    var response = await dio.get<List<Place>>(baseUrl, queryParameters: queryParameters);
+    try {
+      var response = await dio.get(baseUrl, queryParameters: queryParameters);
+      
+      if (response.statusCode == 200) {
+        if (response.data != null && response.data!['results'] != null) {
+          List<Place> result = [];
 
-    if (response.statusCode == 200) {
-      if (response.data != null) {
-        return response.data!;
+          for (var p in response.data!['results']) {
+            result.add(Place.fromJson(p));
+          }
+
+          return result;
+        } else {
+          return [];
+        }
       } else {
         return [];
       }
-    } else {
+    } on Exception catch (_) {
       return [];
     }
   }

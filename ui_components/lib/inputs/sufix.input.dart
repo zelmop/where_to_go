@@ -7,6 +7,7 @@ class SufixInput extends StatelessWidget {
   final VoidCallback onPressed;
   final double width;
   final bool obscureText;
+  final Function validator;
   
   const SufixInput({
     super.key,
@@ -15,6 +16,7 @@ class SufixInput extends StatelessWidget {
     required this.labelText,
     required this.onPressed,
     required this.width,
+    required this.validator,
     this.obscureText = false
   });
 
@@ -34,7 +36,8 @@ class SufixInput extends StatelessWidget {
             onPressed: onPressed,
             icon: Icon(icon)
           )
-        )
+        ),
+        validator: (value) => validator(value)
       )
     );
   }
