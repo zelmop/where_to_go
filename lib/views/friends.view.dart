@@ -48,7 +48,10 @@ class _FriendsViewState extends State<FriendsView> {
                         width: size.width * .8,
                         child: FriendListTile(
                           friend: widget.friends[index],
-                          onRemove: () => viewModel.onRemoveFriend(index)
+                          onRemove: () => viewModel.onRemoveFriend(index),
+                          onEditAvatar: () async => await viewModel.onEditAvatar(
+                            widget.friends[index]
+                          )
                         )
                       );
                     }, 

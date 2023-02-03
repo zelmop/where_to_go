@@ -14,4 +14,11 @@ class FriendsMixinService with ListenableServiceMixin {
     _friends.removeAt(index);
     notifyListeners();
   }
+
+  void editFriendAvatar(Friend friend, String newAvatar) {
+    var idx = _friends.indexOf(friend);
+    friend.avatar = newAvatar;
+    _friends.replaceRange(idx, 1, [friend]);
+    notifyListeners();
+  }
 }

@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 class FriendListTile extends StatelessWidget {
   final Friend friend;
   final VoidCallback onRemove;
+  final VoidCallback onEditAvatar;
 
   const FriendListTile({
     super.key,
     required this.friend,
-    required this.onRemove
+    required this.onRemove,
+    required this.onEditAvatar
   });
 
   @override
@@ -19,10 +21,13 @@ class FriendListTile extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         child: Row(
           children: [
-            const Expanded(
+            Expanded(
               flex: 2,
-              child: CircleAvatar(
-                backgroundImage: AssetImage('assets/images/avatar_00.png'),
+              child: GestureDetector(
+                onTap: onEditAvatar,
+                child: CircleAvatar(
+                  backgroundImage: AssetImage(friend.avatar),
+                ),
               )
             ),
             const SizedBox(width: 10),
