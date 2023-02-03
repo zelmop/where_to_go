@@ -16,7 +16,7 @@
     la persistencia de datos localmente o en la nube. Pueden ocurrir errores con una o más funcionalidades que no fueron probadas.
   </p>
   <p>
-    Este es un link para observar el funcionamineto del MVP <a heref="https://drive.google.com/file/d/1Wpiw7Qo2RyCnH-5g6CdbBDJCb_0SVLyE/view?usp=sharing" target="_blank">video</a>.
+    Este es un link para observar el funcionamineto del MVP <a href="https://drive.google.com/file/d1Wpiw7Qo2RyCnH-5g6CdbBDJCb_0SVLyE/view?usp=sharing" target="_blank">video</a>.
   </p>
   
   <h3>Licencia:</h3>
