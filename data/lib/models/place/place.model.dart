@@ -18,7 +18,7 @@ class Place {
   final String name;
 
   @JsonKey(name: 'opening_hours')
-  final String openingHours;
+  final PlaceOpeningHours? openingHours;
 
   @JsonKey(name: 'place_id')
   final String placeId;
@@ -28,7 +28,7 @@ class Place {
   final List<String> types;
 
   @JsonKey(name: 'user_ratings_total')
-  final String userRatingsTotal;
+  final double userRatingsTotal;
 
   Place({
     required this.businessStatus,

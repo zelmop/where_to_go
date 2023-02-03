@@ -12,11 +12,14 @@ Place _$PlaceFromJson(Map<String, dynamic> json) => Place(
       geometry:
           PlaceGeometry.fromJson(json['geometry'] as Map<String, dynamic>),
       name: json['name'] as String,
-      openingHours: json['opening_hours'] as String,
+      openingHours: json['opening_hours'] == null
+          ? null
+          : PlaceOpeningHours.fromJson(
+              json['opening_hours'] as Map<String, dynamic>),
       placeId: json['place_id'] as String,
       rating: (json['rating'] as num).toDouble(),
       types: (json['types'] as List<dynamic>).map((e) => e as String).toList(),
-      userRatingsTotal: json['user_ratings_total'] as String,
+      userRatingsTotal: (json['user_ratings_total'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$PlaceToJson(Place instance) => <String, dynamic>{
