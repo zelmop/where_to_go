@@ -5,8 +5,7 @@ part 'places_apli_client_query_parameters.model.g.dart';
 @JsonSerializable()
 class PlacesApiClientQueryParameters {
   final String query;
-  final double lat;
-  final double lng;
+  final String location;
   final int radius;
   final String region;
   final String type;
@@ -14,8 +13,7 @@ class PlacesApiClientQueryParameters {
 
   PlacesApiClientQueryParameters({
     required this.query,
-    required this.lat,
-    required this.lng,
+    required this.location,
     required this.radius,
     required this.region,
     required this.type,
