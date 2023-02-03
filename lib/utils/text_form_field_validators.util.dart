@@ -67,7 +67,7 @@ class TextFormFieldValidators {
     return 'Solo letras y espacios';
   }
 
-  static String? validateRaius(String? query) {
+  static String? validateRadius(String? query) {
     if (query == null || query.isEmpty) {
       return null;
     }
@@ -79,5 +79,19 @@ class TextFormFieldValidators {
     }
 
     return 'Solo numeros';
+  }
+
+  static String? validatePaymentPrice(String? query) {
+    if (query == null || query.isEmpty) {
+      return null;
+    }
+
+    var r = RegExp(r'^[0-9,.]+$');
+
+    if (r.hasMatch(query)) {
+      return null;
+    }
+
+    return 'Solo numeros, "," y "." ';
   }
 }

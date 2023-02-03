@@ -4,8 +4,11 @@ import 'package:mixin_services/mixin_services.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:where_to_go/app/app.locator.dart';
+import 'package:uuid/uuid.dart';
 
 class AddFriendBottomSheetViewModel extends BaseViewModel {
+  final uuid = const Uuid();
+
   late DialogService _dialogService;
   late FriendsMixinService _friendsMixinService;
   late BottomSheetService _bottomSheetService;
@@ -55,6 +58,7 @@ class AddFriendBottomSheetViewModel extends BaseViewModel {
     }
 
     var friend = Friend(
+      id: uuid.v4(),
       name: name, 
       nick: nick,
       lat: lat,

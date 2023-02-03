@@ -96,7 +96,7 @@ class _SearchViewFiltersState extends State<SearchViewFilters> {
             controller: widget.radiusTextEditingController, 
             labelText: 'Radio de busqueda en metros', 
             width: size.width * .8,
-            validator: TextFormFieldValidators.validateRaius
+            validator: TextFormFieldValidators.validateRadius
           ),
           GapsContants.smallVerticalGap,
           viewModel.preferences.isNotEmpty ? SizedBox(

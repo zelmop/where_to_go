@@ -1,5 +1,6 @@
 import 'package:data/data.dart';
 import 'package:flutter/material.dart';
+import 'package:ui_components/ui_components.dart';
 
 class FriendListTile extends StatelessWidget {
   final Friend friend;
@@ -36,22 +37,8 @@ class FriendListTile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    friend.name,
-                    style: const TextStyle(
-                      fontFamily: 'NotoSans',
-                      fontWeight: FontWeight.w700,
-                      fontSize: 16
-                    )
-                  ),
-                  Text(
-                    friend.nick,
-                    style: const TextStyle(
-                      fontFamily: 'NotoSans',
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12
-                    )
-                  )
+                  NameTileText(name: friend.name),
+                  NickTileText(nick: friend.nick)
                 ]
               )
             ),
