@@ -22,7 +22,7 @@ class MainNavigationView extends StatelessWidget {
         children: [
           SearchView(friends: viewModel.friends),
           FriendsView(friends: viewModel.friends),
-          const PaymentView(),
+          PaymentView(friends: viewModel.friends),
           const SettingsView()
         ]
       )
